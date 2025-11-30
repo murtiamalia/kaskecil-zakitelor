@@ -24,64 +24,6 @@ st.markdown("""
     --grad-red: linear-gradient(135deg, #FFB4B4, #E79A9A);
 }
 
-/* --- General Card Look for Each Menu Item --- */
-.sidebar-card {
-    padding: 14px 18px !important;
-    border-radius: 20px;
-    margin-bottom: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    transition: 0.25s ease;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    border: 1.5px solid rgba(255,255,255,0.3);
-}
-
-.sidebar-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 7px 16px rgba(0,0,0,0.22);
-}
-
-/* --- Apply Gradient by Order --- */
-.sidebar-card:nth-child(1) {
-    background: var(--grad-pink);
-}
-.sidebar-card:nth-child(2) {
-    background: var(--grad-blue);
-}
-.sidebar-card:nth-child(3) {
-    background: var(--grad-yellow);
-}
-.sidebar-card:nth-child(4) {
-    background: var(--grad-purple);
-}
-.sidebar-card:nth-child(5) {
-    background: var(--grad-red);
-}
-
-/* --- Selected state (card aktif) --- */
-.sidebar-card.selected {
-    box-shadow: 0 0 0 3px #3A2D71 inset;
-    transform: scale(0.98);
-}
-
-/* --- Radio styling --- */
-.sidebar-card input[type="radio"] {
-    width: 17px;
-    height: 17px;
-}
-
-/* --- Text in card --- */
-.sidebar-title {
-    font-size: 18px;
-    font-weight: 700;
-}
-.sidebar-sub {
-    margin-top: -3px;
-    font-size: 14px;
-}
-
 /* ====== Perbaikan cepat untuk NumberInput (Jumlah) ====== */
 
 /* Terapkan border & radius pada wrapper luar supaya tidak terpotong */
@@ -417,6 +359,29 @@ st.sidebar.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# ========== INITIAL STATE ==========
+if "menu" not in st.session_state:
+    st.session_state.menu = "📌 Beranda"
+
+# ========== RADIO HIDDEN ==========
+menu_value = st.sidebar.radio(
+    "hidden_menu",
+    [
+        "📌 Beranda",
+        "🧾 Transaksi",
+        "📑 Laporan Bulanan",
+        "📥 Unduh Laporan",
+        "🗑 Reset Semua Transaksi"
+    ],
+    index=[
+        "📌 Beranda",
+        "🧾 Transaksi",
+        "📑 Laporan Bulanan",
+        "📥 Unduh Laporan",
+        "🗑 Reset Semua Transaksi"
+    ].index(st.session_state.menu),
+    label_visibility="collapsed"
+)
 
 # ============================
 # FUNCTION ITEM CARD
@@ -434,22 +399,6 @@ def menu_item(label, icon, key, card_class):
 
     st.sidebar.markdown(html, unsafe_allow_html=True)
     return key
-
-
-# ==================================
-# LOGIC RADIO TANPA TAMPIL ASLINYA
-# ==================================
-
-# radio hidden
-menu_value = st.sidebar.radio(
-    "hidden_menu",
-    ["beranda","transaksi","laporan","unduh","reset"],
-    label_visibility="collapsed"
-)
-
-# simpan ke session agar sidebar bisa tahu yg aktif
-st.session_state.menu = menu_value
-
 
 # ==================================
 # RENDER CARD MENU
@@ -775,6 +724,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
