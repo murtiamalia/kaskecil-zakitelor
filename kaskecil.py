@@ -8,24 +8,65 @@ import io
 st.markdown("""
 <style>
 
+/* ==========================================
+   COLOR PALETTE
+========================================== */
 :root {
     --royal-blue: #3A2D71;
     --tea-pink: #E9D1E1;
     --yellow: #F6D60D;
     --baby-pink: #A0BAC0;
     --soft-red: #FFB4B4;
-}
-/* =======================================================
-   FIX INPUT FIELD: BIKIN LEBIH TERANG & JELAS
-   ======================================================= */
 
-.stTextInput > div > div > input,
-.stNumberInput > div > div > input,
-.stDateInput > div > div > input {
-    background: #FFFFFF !important;
+    --yellow-soft: rgba(246,214,13,0.65);
+    --yellow-soft-hover: rgba(246,214,13,0.80);
+    --yellow-border: #d7be09;
+}
+
+/* ==========================================
+   FIX GLOBAL OPACITY & TEXT INVISIBILITY
+========================================== */
+html, body, *, .stAppViewContainer * {
+    opacity: 1 !important;
+    color: inherit !important;
+}
+
+/* ==========================================
+   HEADERS / JUDUL AGAR MUNCUL
+========================================== */
+h1, h2, h3, h4, h5, h6,
+.stMarkdown h1, .stMarkdown h2 {
     color: #1B1F3B !important;
-    border: 2px solid #3A2D71 !important;
+    font-weight: 900 !important;
+}
+
+/* Header besar di halaman utama */
+.main-header {
+    width: 100%;
+    padding: 18px 0;
+    text-align: center;
+    background: linear-gradient(135deg, #3A2D71, #50409B);
+    color: white !important;
+    font-size: 28px;
+    font-weight: 900;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    margin-bottom: 25px;
+}
+
+/* ==========================================
+   INPUT FIELD — PUTIH TERANG
+========================================== */
+
+.stTextInput input,
+.stNumberInput input,
+.stDateInput input,
+.stTextArea textarea {
+    background: #FFFFFF !important;
+    color: #000 !important;
+    border: 2px solid var(--royal-blue) !important;
     border-radius: 10px !important;
+    box-shadow: none !important;
 }
 
 /* Placeholder */
@@ -34,366 +75,164 @@ input::placeholder {
     opacity: 1 !important;
 }
 
-/* Background card input */
-.input-card,
-.stDateInput,
-.stTextInput,
-.stNumberInput {
-    background: #FAFAFF !important;
+/* Selectbox */
+.stSelectbox > div > div {
+    background: #fff !important;
+    border: 2px solid var(--royal-blue) !important;
+    border-radius: 10px !important;
+    color: #000 !important;
 }
 
-/* =======================================================
-   FIX JUDUL / HEADINGS YANG GELAP ATAU TIDAK MUNCUL
-   ======================================================= */
-
-h1, h2, h3, h4, h5, h6 {
-    color: #1B1F3B !important;
-    font-weight: 900 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
+/* Focus efek biru */
+.stTextInput input:focus,
+.stNumberInput input:focus,
+.stDateInput input:focus,
+.stTextArea textarea:focus,
+.stSelectbox > div[data-baseweb="select"]:focus-within {
+    border-color: var(--royal-blue) !important;
+    box-shadow: 0 0 10px rgba(58,45,113,0.35) !important;
 }
 
-/* Tangkap heading milik Streamlit */
-div[class*="stAppViewBlockContainer"] h1,
-div[class*="stAppViewBlockContainer"] h2 {
-    color: #1B1F3B !important;
-}
-
-/* Judul markdown (# Judul) */
-.stMarkdown h1,
-.stMarkdown h2 {
-    color: #1B1F3B !important;
-}
-
-/* Class heading Streamlit yang sering berubah */
-.css-10trblm,
-.css-1kyxreq,
-.css-1qg05tj,
-.css-vk3wp9,
-.css-1pj0v2q {
-    color: #1B1F3B !important;
-    font-weight: 900 !important;
-    opacity: 1 !important;
-}
-
-/* Hilangkan opacity global */
-html, body, *, 
-.stAppViewContainer * {
-    opacity: 1 !important;
-    color: inherit !important;
-}
-
-/* =======================================================
-   FIX HEADER UTAMA (PENCATATAN KAS KECIL)
-   ======================================================= */
-
-.main-header,
-.main-header h1 {
-    color: #FFFFFF !important;
-    text-shadow: 0px 1px 3px rgba(0,0,0,0.25) !important;
-}
-
-/* =======================================================
-   FIX LABEL USERNAME & PASSWORD DI LOGIN
-   ======================================================= */
-
+/* ==========================================
+   LABEL USERNAME & PASSWORD LOGIN
+========================================== */
 div.stTextInput label,
 div.stPasswordInput label {
     color: #1B1F3B !important;
     font-weight: 800 !important;
     font-size: 16px !important;
-    opacity: 1 !important;
 }
 
-/* Class label yang Streamlit sembunyikan */
-label.css-1p6f2i7,
-label.css-1dp5vir,
-label.css-1pb2k2g {
+/* Streamlit sempat menyembunyikan label — kita paksa muncul */
+label[class] {
+    clip: auto !important;
+    clip-path: none !important;
     position: relative !important;
     width: auto !important;
     height: auto !important;
-    clip: auto !important;
-    clip-path: none !important;
     opacity: 1 !important;
-    color: #1B1F3B !important;
-    font-weight: 800 !important;
 }
 
-.login-card label {
-    color: #1B1F3B !important;
-    font-weight: 900 !important;
-}
+/* ==========================================
+   LOGIN CARD
+========================================== */
 
-/* ============================================================
-       TOMBOL KUNING SOFT (TRANSPARANSI 60%)
-   ============================================================ */
-
-:root {
-    --yellow-soft: rgba(246,214,13,0.6);
-    --yellow-soft-hover: rgba(246,214,13,0.75);
-    --yellow-border: #e0bf0a;
-}
-
-.wrap-save button,
-.wrap-clear button,
-.wrap-download button,
-.wrap-reset button,
-button[data-testid="baseButton-primary"],
-.stButton > button,
-button[kind="secondary"] {
-    background-color: var(--yellow-soft) !important;
-    color: #000 !important;
-    font-weight: 800 !important;
-    border-radius: 10px !important;
-    border: 2px solid var(--yellow-border) !important;
-    padding: 10px 22px !important;
-    font-size: 15px !important;
-    height: 45px !important;
-    box-shadow:
-        0 3px 8px rgba(0,0,0,0.15),
-        0 0 10px rgba(246,214,13,0.20) !important;
-    transition: 0.22s ease-in-out !important;
-}
-
-/* Hover */
-.wrap-save button:hover,
-.wrap-clear button:hover,
-.wrap-download button:hover,
-.wrap-reset button:hover,
-button[data-testid="baseButton-primary"]:hover,
-.stButton > button:hover,
-button[kind="secondary"]:hover {
-    background-color: var(--yellow-soft-hover) !important;
-    transform: translateY(-2px);
-    box-shadow:
-        0 4px 14px rgba(0,0,0,0.22),
-        0 0 12px rgba(246,214,13,0.45) !important;
-}
-
-/* Active */
-.wrap-save button:active,
-.wrap-clear button:active,
-.wrap-download button:active,
-.wrap-reset button:active,
-button[data-testid="baseButton-primary"]:active,
-.stButton > button:active,
-button[kind="secondary"]:active {
-    transform: scale(0.97);
-}
-
-/* =====================================================
-                REMOVE WHITE HEADER GAP
-   ===================================================== */
-
-div.block-container { padding-top: 0 !important; }
-header[data-testid="stHeader"] { height: 0 !important; padding: 0 !important; }
-section[data-testid="stToolbar"] { display: none !important; }
-div[data-testid="stAppViewBlockContainer"] { padding-top: 0 !important; }
-
-html, body, [data-testid="stApp"] {
-    background: white !important;
-}
-
-body.login-mode [data-testid="stApp"] {
-    background: transparent !important;
-}
-
-/* -----------------------------------------
-        LOGIN WRAPPER TENGAH
-------------------------------------------*/
 .login-wrapper {
     width: 420px;
     margin: 110px auto 0 auto;
     text-align: center;
 }
 
-/* -----------------------------------------
-        LOGIN CARD — GLASS (TANPA NEON)
-------------------------------------------*/
 .login-card {
-    background: rgba(255,255,255,0.40);
+    background: rgba(255,255,255,0.50);
+    border: 2px solid rgba(255,255,255,0.6);
     backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
     padding: 40px 26px;
     border-radius: 20px;
-
-    border: 2px solid rgba(255,255,255,0.55);
     box-shadow: 0 6px 22px rgba(0,0,0,0.18);
 }
 
-/* -----------------------------------------
-        TITLE & SUBTITLE (BESAR + TENGAH)
-------------------------------------------*/
 .login-title {
     font-size: 38px;
     font-weight: 900;
-    text-align: center;
     color: var(--royal-blue);
-    margin-bottom: 6px;
 }
 
 .login-sub {
     font-size: 18px;
     font-weight: 700;
-    text-align: center;
     color: #333;
-    margin-bottom: 20px;
 }
 
-
-/* =====================================================
-        INPUT FORM FULL BORDER BLUE (FIX)
-===================================================== */
-
-.stTextInput > div > div > input,
-.stNumberInput > div > div > input {
-    border: 2px solid var(--royal-blue) !important;
+/* ==========================================
+   BUTTON — KUNING TERANG
+========================================== */
+.stButton > button,
+button[data-testid="baseButton-primary"],
+button[kind="secondary"],
+.wrap-save button,
+.wrap-clear button,
+.wrap-download button,
+.wrap-reset button {
+    background-color: var(--yellow-soft) !important;
+    border: 2px solid var(--yellow-border) !important;
     border-radius: 10px !important;
-    background: white !important;
-    box-shadow: none !important;
-}
 
-.stTextArea textarea {
-    border: 2px solid var(--royal-blue) !important;
-    border-radius: 10px !important;
-    background: white !important;
-}
-
-.stDateInput > div > div > input {
-    border: 2px solid var(--royal-blue) !important;
-    border-radius: 10px !important;
-    background: white !important;
-}
-
-.stSelectbox > div > div {
-    border: 2px solid var(--royal-blue) !important;
-    border-radius: 10px !important;
-    background: white !important;
-}
-
-.stSelectbox > div[data-baseweb="select"] {
-    border-color: var(--royal-blue) !important;
-}
-
-.stTextInput > div > div > input:focus,
-.stNumberInput > div > div > input:focus,
-.stTextArea textarea:focus,
-.stDateInput > div > div > input:focus,
-.stSelectbox > div[data-baseweb="select"]:focus-within {
-    border-color: var(--royal-blue) !important;
-    box-shadow: 0 0 10px rgba(58,45,113,0.4) !important;
-}
-
-
-/* =====================================================
-                SIDEBAR PREMIUM
-   ===================================================== */
-
-[data-testid="stSidebar"] {
-    background: white !important;
-    padding: 30px 18px 40px 18px;
-    border-right: 2px solid var(--royal-blue);
-    box-shadow: 6px 0 20px rgba(0,0,0,0.10);
-}
-
-[data-testid="stSidebar"] h1, 
-[data-testid="stSidebar"] h2 {
-    color: var(--royal-blue) !important;
+    color: #000 !important;
     font-weight: 800 !important;
-    margin-bottom: 18px;
+    padding: 10px 22px !important;
+    height: 45px !important;
+
+    box-shadow:
+        0 3px 8px rgba(0,0,0,0.14),
+        0 0 10px rgba(246,214,13,0.25) !important;
+    transition: 0.22s ease-in-out !important;
 }
 
-div[role="radiogroup"] {
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
+/* Hover */
+.stButton > button:hover,
+button[data-testid="baseButton-primary"]:hover {
+    background-color: var(--yellow-soft-hover) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Active click */
+.stButton > button:active {
+    transform: scale(0.97) !important;
+}
+
+/* ==========================================
+   SIDEBAR NAVIGATION BULLETS — PUTIH / SOFT
+========================================== */
+[data-testid="stSidebar"] {
+    background: #fff !important;
+    padding: 30px 18px;
+    border-right: 2px solid var(--royal-blue);
+    box-shadow: 6px 0 20px rgba(0,0,0,0.1);
 }
 
 div[role="radiogroup"] > label {
-    padding: 14px 16px;
+    padding: 12px 16px;
     font-size: 15px;
     font-weight: 600;
     border-radius: 14px;
     cursor: pointer;
-    border: none !important;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    transition: all 0.22s ease-in-out;
+    transition: 0.22s;
 }
 
-div[role="radiogroup"] > label:nth-child(1) {
-    background: linear-gradient(135deg, #E9D1E1, #FFFFFF);
-    color: #3A2D71 !important;
+/* Warna latar sesuai palette */
+div[role="radiogroup"] > label:nth-child(1) { background: var(--tea-pink); }
+div[role="radiogroup"] > label:nth-child(2) { background: var(--baby-pink); }
+div[role="radiogroup"] > label:nth-child(3) { background: var(--yellow); }
+div[role="radiogroup"] > label:nth-child(4) { background: var(--tea-pink); }
+div[role="radiogroup"] > label:nth-child(5) { background: var(--soft-red); }
+
+/* Bullet (titik di kiri) → putih */
+div[role="radiogroup"] > label::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white !important;
+    margin-right: 10px;
+    display: inline-block;
 }
 
-div[role="radiogroup"] > label:nth-child(2) {
-    background: linear-gradient(135deg, #A0BAC0, #DDE7EB);
-    color: #1a1a1a !important;
-}
-
-div[role="radiogroup"] > label:nth-child(3) {
-    background: linear-gradient(135deg, #F6D60D, #FFF6C5);
-    color: #4A4008 !important;
-}
-
-div[role="radiogroup"] > label:nth-child(4) {
-    background: linear-gradient(135deg, #E9D1E1, #F7E8F4);
-    color: #3A2D71 !important;
-}
-
-div[role="radiogroup"] > label:nth-child(5) {
-    background: linear-gradient(135deg, #FFB4B4, #FFDADA);
-    color: #7a0000 !important;
-}
-
-div[role="radiogroup"] > label:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.14);
-}
-
+/* Saat dipilih */
 div[role="radiogroup"] > label[data-selected="true"] {
     background: var(--royal-blue) !important;
     color: white !important;
-    box-shadow: 0 6px 18px rgba(58,45,113,0.45) !important;
-    transform: translateY(-2px) scale(1.02);
-}
-/* ============================================================
-   HEADER UTAMA — BANNER BIRU ELEGAN
-   ============================================================ */
-
-.main-header {
-    width: 100%;
-    padding: 18px 0;
-    text-align: center;
-    background: linear-gradient(135deg, #3A2D71, #50409B);
-    color: white;
-    font-size: 28px;
-    font-weight: 900;
-    border-radius: 10px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-    margin-bottom: 25px;
-}
-/* Tambahkan warna teks agar terlihat jelas di dalam input */
-.stTextInput input,
-.stNumberInput input,
-.stTextArea textarea,
-.stDateInput input {
-    color: #000 !important; /* Warna teks di dalam input */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.20);
 }
 
-/* Selectbox (Dropdown) */
-.stSelectbox > div > div {
-    /* ... kode lama ... */
-    color: #000 !important; /* Warna teks di selectbox utama */
-}
-
-/* Teks label untuk st.sidebar.radio (Navigasi) */
-[data-testid="stSidebar"] div.stRadio > label {
-    color: #333 !important; /* Warna teks label radio (misalnya 'Navigasi') */
+/* Titik ketika dipilih */
+div[role="radiogroup"] > label[data-selected="true"]::before {
+    background: white !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
 
 # =====================================================
 # ===============         LOGIN       ==================
@@ -785,6 +624,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
