@@ -7,6 +7,50 @@ import io
 
 st.markdown("""
 <style>
+/* ====== Perbaikan cepat untuk NumberInput (Jumlah) ====== */
+
+/* Terapkan border & radius pada wrapper luar supaya tidak terpotong */
+.stNumberInput > div {
+    background: #FFFFFF !important;
+    border: 2px solid var(--royal-blue) !important;
+    border-radius: 10px !important;
+    padding: 0 !important;           /* hilangkan padding wrapper agar kontrol di dalam rata */
+    box-shadow: none !important;
+}
+
+/* Atur input sendiri: biarkan tanpa border internal (border ada di wrapper) */
+.stNumberInput > div > div > input[type="number"] {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    padding: 12px 14px !important;   /* jarak teks sama seperti input lain */
+    color: #000 !important;
+    font-size: 16px !important;
+    box-shadow: none !important;
+    -moz-appearance: textfield !important; /* firefox: hilangkan spin */
+}
+
+/* Sembunyikan spin buttons di WebKit (Chrome/Safari) */
+.stNumberInput > div > div > input[type="number"]::-webkit-outer-spin-button,
+.stNumberInput > div > div > input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+/* Jika Streamlit menambahkan tombol stepper sendiri (CSS internal), sembunyikan elemen tombol di wrapper kanan */
+.stNumberInput button, 
+.stNumberInput > div > button {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Pastikan focus masih menampilkan glow biru konsisten */
+.stNumberInput:focus-within,
+.stNumberInput > div:focus-within {
+    box-shadow: 0 0 10px rgba(58,45,113,0.35) !important;
+    border-color: var(--royal-blue) !important;
+}
+
 
 /* ==========================================
    COLOR PALETTE
@@ -590,6 +634,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
