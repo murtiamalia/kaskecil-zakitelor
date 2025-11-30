@@ -281,6 +281,8 @@ div[role="radiogroup"] > label[data-selected="true"] {
     color: #666;
 }
 
+</style>
+""", unsafe_allow_html=True)
 
 # =====================================================
 # ===============         LOGIN       ==================
@@ -682,6 +684,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
