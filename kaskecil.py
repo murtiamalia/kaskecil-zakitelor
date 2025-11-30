@@ -204,20 +204,18 @@ label[class] {
 }
 
 
-/* ========= SIDEBAR GAYA UTAMA ========= */
+/* ========= SIDEBAR PUTIH ========= */
 [data-testid="stSidebar"] {
-    background: #1d1d1d;
+    background: #ffffff !important;
     padding: 25px 20px;
-    border-right: 1px solid rgba(255,255,255,0.15);
+    border-right: 1px solid rgba(0,0,0,0.15);
 }
 
 /* Judul Sidebar */
 .sidebar-title {
     font-size: 26px;
     font-weight: 900;
-    background: linear-gradient(135deg, #FFD84D, #FFEA74);
-    -webkit-background-clip: text;
-    color: transparent;
+    color: #222;
     margin-bottom: 10px;
     display: block;
 }
@@ -235,27 +233,27 @@ div[role="radiogroup"] > label {
     border-radius: 16px;
     font-size: 17px;
     font-weight: bold;
-    color: #fff;
+    color: #333;
     cursor: pointer;
     border: 2px solid transparent;
     transition: all 0.25s ease;
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
 }
 
 /* ---- GRADIASI TIAP TOMBOL ---- */
 div[role="radiogroup"] > label:nth-child(1) {
-    background: linear-gradient(135deg, #FFC6E0, #FF9AD1);
+    background: linear-gradient(135deg, #FFD0E8, #FFB0D6);
 }
 div[role="radiogroup"] > label:nth-child(2) {
-    background: linear-gradient(135deg, #A0BAC0, #7DA0A8);
+    background: linear-gradient(135deg, #A8C6CC, #88ACB4);
 }
 div[role="radiogroup"] > label:nth-child(3) {
-    background: linear-gradient(135deg, #F6D60D, #E8C70A);
+    background: linear-gradient(135deg, #FFE34D, #E8C70A);
 }
 div[role="radiogroup"] > label:nth-child(4) {
-    background: linear-gradient(135deg, #D8C9E8, #B7A7D3);
+    background: linear-gradient(135deg, #D8C9FF, #B7A7F3);
 }
 div[role="radiogroup"] > label:nth-child(5) {
     background: linear-gradient(135deg, #FFB4B4, #E79A9A);
@@ -263,16 +261,16 @@ div[role="radiogroup"] > label:nth-child(5) {
 
 /* Hover efek */
 div[role="radiogroup"] > label:hover {
-    filter: brightness(1.12);
+    filter: brightness(1.08);
     transform: translateX(5px);
 }
 
 /* ---- TOMBOL TERPILIH / ACTIVE ---- */
 div[role="radiogroup"] > label[data-selected="true"] {
-    filter: brightness(1.25);
-    border: 2px solid rgba(255,255,255,0.85);
+    filter: brightness(1.18);
+    border: 2px solid rgba(0,0,0,0.55);
     transform: translateX(6px) scale(1.05);
-    box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.25);
     color: #000 !important;
 }
 
@@ -280,11 +278,9 @@ div[role="radiogroup"] > label[data-selected="true"] {
 .sidebar-footer {
     margin-top: 35px;
     font-size: 12px;
-    opacity: 0.7;
+    color: #666;
 }
 
-</style>
-""", unsafe_allow_html=True)
 
 # =====================================================
 # ===============         LOGIN       ==================
@@ -686,6 +682,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
