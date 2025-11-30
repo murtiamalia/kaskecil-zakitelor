@@ -16,6 +16,127 @@ st.markdown("""
     --soft-red: #FFB4B4;
 }
 
+/* ============================== */
+/*         LOGIN CONTAINER        */
+/* ============================== */
+.login-container {
+    background: #F5F7FF !important;      /* background terang */
+    border-radius: 15px !important;
+    padding: 30px !important;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.15) !important;
+    border: 1px solid #D6DAF0 !important;
+}
+
+/* Judul login */
+.login-title {
+    color: #1B1F3B !important;
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+}
+
+/* ============================== */
+/*         INPUT FIELD LOGIN      */
+/* ============================== */
+.stTextInput label {
+    color: #1B1F3B !important;  /* warna label terlihat */
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    margin-bottom: 8px !important;
+}
+
+/* Input box */
+.stTextInput input {
+    background-color: #FFFFFF !important;
+    color: #1B1F3B !important;
+    border: 2px solid #6A5ACD !important;  /* ungu medium */
+    border-radius: 10px !important;
+    padding: 10px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+}
+
+/* Fokus pada input */
+.stTextInput input:focus {
+    border-color: #483D8B !important;      /* ungu gelap */
+    box-shadow: 0 0 5px rgba(72,61,139,0.6) !important;
+}
+
+/* Placeholder lebih gelap */
+input::placeholder {
+    color: #555 !important;
+    opacity: 1 !important;
+}
+
+/* ============================== */
+/*         BUTTON LOGIN           */
+/* ============================== */
+.stButton > button {
+    background: linear-gradient(135deg, #6A5ACD, #483D8B) !important;
+    color: white !important;
+    border-radius: 10px !important;
+    padding: 12px 20px !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    border: none !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    transition: 0.2s ease-in-out !important;
+}
+
+/* Hover effect */
+.stButton > button:hover {
+    background: linear-gradient(135deg, #7B6DFF, #5A4DDE) !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2) !important;
+}
+
+/* ============================== */
+/*       SIDEBAR / NAV MENU       */
+/*   (supaya teks terlihat jelas) */
+/* ============================== */
+.sidebar, .sidebar-content, .css-1d391kg, .css-1v0mbdj {
+    color: #1B1F3B !important;
+}
+
+/* Link / menu tulisan */
+.sidebar a, .css-17eq0hr, .css-1lcbmhc, .css-nxf4we {
+    color: #1B1F3B !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
+/* ============================== */
+/*   HILANGKAN OPACITY CONTAINER  */
+/*   (agar teks tidak memudar)    */
+/* ============================== */
+.block-container {
+    opacity: 1 !important;
+}
+
+/* ============================== */
+/*      TOMBOL UMUM STREAMLIT     */
+/* ============================== */
+button[kind="secondary"] {
+    background-color: #ffffff !important;
+    border: 2px solid #6A5ACD !important;
+    color: #1B1F3B !important;
+    font-weight: 600 !important;
+}
+
+button[kind="secondary"]:hover {
+    background-color: #ECEBFF !important;
+}
+
+/* ============================== */
+/*   FIX KECIL – TEKS TERSEMBUNYI */
+/* ============================== */
+* {
+    text-shadow: none !important;
+}
+
+
 /* ============================================================
        TOMBOL KUNING SOFT (TRANSPARANSI 60%) — FINAL
    ============================================================ */
@@ -683,6 +804,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
