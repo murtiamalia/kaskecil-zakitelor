@@ -204,82 +204,83 @@ label[class] {
 }
 
 
-/* ==========================================
-   SIDEBAR MENU ITEM — TANPA BULAT-BULAT
-========================================== */
-
-/* ================================ */
-/* SIDEBAR GRADIENT MENU */
-/* ================================ */
+/* ========= SIDEBAR GAYA UTAMA ========= */
 [data-testid="stSidebar"] {
-background: linear-gradient(180deg, #3A2D71 0%, #6A5BA9 45%, #B69CE3 100%) !important;
-padding: 30px 18px;
-border-right: 3px solid rgba(255,255,255,0.25);
-box-shadow: 6px 0 25px rgba(0,0,0,0.18);
+    background: #1d1d1d;
+    padding: 25px 20px;
+    border-right: 1px solid rgba(255,255,255,0.15);
 }
 
-
-/* Hilangkan bullet default */
-div[role="radiogroup"] input {
-display: none !important;
+/* Judul Sidebar */
+.sidebar-title {
+    font-size: 26px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #FFD84D, #FFEA74);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+    display: block;
 }
 
+/* Container tombol navigasi */
+div[role="radiogroup"] {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
 
-/* Style tombol menu */
+/* Tombol umum */
 div[role="radiogroup"] > label {
-padding: 14px 16px;
-margin-bottom: 12px;
-font-size: 17px;
-font-weight: 800;
-border-radius: 14px;
-cursor: pointer;
-transition: 0.25s ease-in-out;
-display: block;
-color: #fff !important;
-border: 1px solid rgba(255,255,255,0.35);
-backdrop-filter: blur(6px);
-/* GRADASI TIAP TOMBOL NAVIGASI */
-background: linear-gradient(135deg, #FFC6E0, #FF9AD1);
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
 }
 
-
-/* Variasi gradiasi berdasarkan urutan tombol */
+/* ---- GRADIASI TIAP TOMBOL ---- */
+div[role="radiogroup"] > label:nth-child(1) {
+    background: linear-gradient(135deg, #FFC6E0, #FF9AD1);
+}
 div[role="radiogroup"] > label:nth-child(2) {
-background: linear-gradient(135deg, #A0BAC0, #7DA0A8);
+    background: linear-gradient(135deg, #A0BAC0, #7DA0A8);
 }
-
-
 div[role="radiogroup"] > label:nth-child(3) {
-background: linear-gradient(135deg, #F6D60D, #E8C70A);
-color: #000 !important;
+    background: linear-gradient(135deg, #F6D60D, #E8C70A);
 }
-
-
 div[role="radiogroup"] > label:nth-child(4) {
-background: linear-gradient(135deg, #D8C9E8, #B7A7D3);
+    background: linear-gradient(135deg, #D8C9E8, #B7A7D3);
 }
-
-
 div[role="radiogroup"] > label:nth-child(5) {
-background: linear-gradient(135deg, #FFB4B4, #E79A9A);
+    background: linear-gradient(135deg, #FFB4B4, #E79A9A);
 }
 
-
-/* Efek Hover */
+/* Hover efek */
 div[role="radiogroup"] > label:hover {
-transform: translateX(6px);
-background: rgba(255,255,255,0.30);
-border-color: rgba(255,255,255,0.45);
+    filter: brightness(1.12);
+    transform: translateX(5px);
 }
 
-
-/* Warna saat dipilih */
+/* ---- TOMBOL TERPILIH / ACTIVE ---- */
 div[role="radiogroup"] > label[data-selected="true"] {
-background: linear-gradient(90deg, #F6D60D, #FFEA74) !important;
-color: #000 !important;
-border-color: #fff;
-box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-transform: translateX(6px) scale(1.02);
+    filter: brightness(1.25);
+    border: 2px solid rgba(255,255,255,0.85);
+    transform: translateX(6px) scale(1.05);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+    color: #000 !important;
+}
+
+/* ================= FOOTER SIDEBAR ================= */
+.sidebar-footer {
+    margin-top: 35px;
+    font-size: 12px;
+    opacity: 0.7;
 }
 
 </style>
@@ -342,7 +343,8 @@ st.markdown("""
 # ===============     SIDEBAR MENU     =================
 # =====================================================
 
-st.sidebar.title("📘 Menu Utama")
+with st.sidebar:
+    st.markdown('<span class="sidebar-title">Menu Utama</span>', unsafe_allow_html=True)
 menu = st.sidebar.radio(
     "",
     [
@@ -353,7 +355,7 @@ menu = st.sidebar.radio(
         "🗑 Reset Semua Transaksi"
     ]
 )
-
+st.write(f"Menu dipilih: **{menu}**")
 # ============================
 # FUNCTION ITEM CARD
 # ============================
@@ -684,6 +686,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
