@@ -644,14 +644,12 @@ elif menu == "📥 Unduh Laporan Kas Kecil":
     st.markdown("<div class='wrap-download'>", unsafe_allow_html=True)
     st.download_button(
         label="📥 Unduh Excel",
-        def generate_excel_openpyxl(df),
-        file_name=f"Laporan_Kas_{datetime.date.today()}.csv",
-        mime="text/csv",
-        key="download_excel"
+        data=generate_excel_openpyxl(df),   # ← PERHATIKAN: Panggil fungsi DI SINI
+        file_name=f"Laporan_Kas_{datetime.date.today()}.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",            key="download_excel"
     )
-
     st.markdown("</div>", unsafe_allow_html=True)
-
+    
 
 # =====================================================
 # ================== RESET TRANSAKSI ==================
