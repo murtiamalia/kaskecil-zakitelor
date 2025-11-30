@@ -8,87 +8,6 @@ import io
 st.markdown("""
 <style>
 
-/* =======================
-   FORM INPUT STYLE
-========================== */
-
-/* Semua input termasuk kolom Jumlah dibuat sama */
-input, select, textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #2b2b84;   /* BORDER BIRU FULL */
-    border-radius: 10px;
-    font-size: 16px;
-    background: #ffffff;        /* Background putih agar terlihat */
-    color: #000;                /* Teks hitam agar kontras */
-    box-sizing: border-box;
-}
-
-/* Placeholder lebih jelas */
-input::placeholder,
-textarea::placeholder {
-    color: #666;
-}
-
-
-/* =======================
-   NAVIGASI MENU
-========================== */
-
-/* Hilangkan bullet / lingkaran */
-nav ul,
-nav li {
-    list-style: none !important;
-    margin: 0;
-    padding: 0;
-}
-
-/* Hapus bullet pseudo-element jika ada */
-nav li::before,
-nav li::after {
-    content: none !important;
-}
-
-/* Style tiap menu navigasi */
-.nav-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 20px;
-    border-radius: 15px;
-    margin-bottom: 12px;
-
-    /* Warna background tetap mengikuti aslinya 
-       (pink, biru, kuning, ungu, merah muda, dll) */
-}
-
-/* Hilangkan lingkaran kecil di kiri */
-.nav-item input[type="radio"],
-.nav-item input[type="checkbox"] {
-    display: none !important;
-}
-
-/* Ikon dan teks jelas */
-.nav-item span {
-    font-size: 20px;
-    font-weight: 600;
-    color: #000;
-}
-
-/* =======================
-   HEADER UTAMA
-========================== */
-
-.main-header {
-    background: #ffffff !important;
-    color: #2b2b84 !important;
-    font-weight: 800;
-    font-size: 32px;
-    text-align: center;
-    padding: 20px 0;
-}
-
-
 /* ==========================================
    COLOR PALETTE
 ========================================== */
@@ -105,7 +24,7 @@ nav li::after {
 }
 
 /* ==========================================
-   FIX GLOBAL OPACITY & TEXT INVISIBILITY
+   GLOBAL OVERRIDE — FIX TULISAN & OPACITY
 ========================================== */
 html, body, *, .stAppViewContainer * {
     opacity: 1 !important;
@@ -113,15 +32,8 @@ html, body, *, .stAppViewContainer * {
 }
 
 /* ==========================================
-   HEADERS / JUDUL AGAR MUNCUL
+   HEADER UTAMA
 ========================================== */
-h1, h2, h3, h4, h5, h6,
-.stMarkdown h1, .stMarkdown h2 {
-    color: #1B1F3B !important;
-    font-weight: 900 !important;
-}
-
-/* Header besar di halaman utama */
 .main-header {
     width: 100%;
     padding: 18px 0;
@@ -136,9 +48,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* ==========================================
-   INPUT FIELD — PUTIH TERANG
+   INPUT FIELD — PUTIH & BORDER BIRU
 ========================================== */
-
 .stTextInput input,
 .stNumberInput input,
 .stDateInput input,
@@ -150,13 +61,7 @@ h1, h2, h3, h4, h5, h6,
     box-shadow: none !important;
 }
 
-/* Placeholder */
-input::placeholder {
-    color: #666 !important;
-    opacity: 1 !important;
-}
-
-/* Selectbox */
+/* Select Box */
 .stSelectbox > div > div {
     background: #fff !important;
     border: 2px solid var(--royal-blue) !important;
@@ -164,7 +69,12 @@ input::placeholder {
     color: #000 !important;
 }
 
-/* Focus efek biru */
+/* Placeholder */
+input::placeholder {
+    color: #666 !important;
+}
+
+/* Focus Blue Glow */
 .stTextInput input:focus,
 .stNumberInput input:focus,
 .stDateInput input:focus,
@@ -175,7 +85,7 @@ input::placeholder {
 }
 
 /* ==========================================
-   LABEL USERNAME & PASSWORD LOGIN
+   LOGIN LABELS (USERNAME & PASSWORD)
 ========================================== */
 div.stTextInput label,
 div.stPasswordInput label {
@@ -184,7 +94,7 @@ div.stPasswordInput label {
     font-size: 16px !important;
 }
 
-/* Streamlit sempat menyembunyikan label — kita paksa muncul */
+/* Fix label invisibility */
 label[class] {
     clip: auto !important;
     clip-path: none !important;
@@ -197,7 +107,6 @@ label[class] {
 /* ==========================================
    LOGIN CARD
 ========================================== */
-
 .login-wrapper {
     width: 420px;
     margin: 110px auto 0 auto;
@@ -219,14 +128,8 @@ label[class] {
     color: var(--royal-blue);
 }
 
-.login-sub {
-    font-size: 18px;
-    font-weight: 700;
-    color: #333;
-}
-
 /* ==========================================
-   BUTTON — KUNING TERANG
+   BUTTON KUNING
 ========================================== */
 .stButton > button,
 button[data-testid="baseButton-primary"],
@@ -238,33 +141,37 @@ button[kind="secondary"],
     background-color: var(--yellow-soft) !important;
     border: 2px solid var(--yellow-border) !important;
     border-radius: 10px !important;
-
     color: #000 !important;
     font-weight: 800 !important;
     padding: 10px 22px !important;
     height: 45px !important;
-
     box-shadow:
         0 3px 8px rgba(0,0,0,0.14),
         0 0 10px rgba(246,214,13,0.25) !important;
     transition: 0.22s ease-in-out !important;
 }
 
-/* Hover */
-.stButton > button:hover,
-button[data-testid="baseButton-primary"]:hover {
+.stButton > button:hover {
     background-color: var(--yellow-soft-hover) !important;
     transform: translateY(-2px) !important;
 }
 
-/* Active click */
 .stButton > button:active {
     transform: scale(0.97) !important;
 }
 
 /* ==========================================
-   SIDEBAR NAVIGATION BULLETS — PUTIH / SOFT
+   SIDEBAR — TANPA "NAVIGASI"
 ========================================== */
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    display: none !important;
+}
+
+/* ==========================================
+   SIDEBAR MENU ITEM (NO DOUBLE BULLETS)
+========================================== */
+
 [data-testid="stSidebar"] {
     background: #fff !important;
     padding: 30px 18px;
@@ -272,30 +179,38 @@ button[data-testid="baseButton-primary"]:hover {
     box-shadow: 6px 0 20px rgba(0,0,0,0.1);
 }
 
+/* Hilangkan bullet default Streamlit */
+div[role="radiogroup"] input {
+    display: none !important;
+}
+
+/* Style tombol menu */
 div[role="radiogroup"] > label {
-    padding: 12px 16px;
-    font-size: 15px;
-    font-weight: 600;
+    padding: 14px 16px;
+    font-size: 17px;
+    font-weight: 700;
     border-radius: 14px;
     cursor: pointer;
     transition: 0.22s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-/* Warna latar sesuai palette */
+/* Warna background item */
 div[role="radiogroup"] > label:nth-child(1) { background: var(--tea-pink); }
 div[role="radiogroup"] > label:nth-child(2) { background: var(--baby-pink); }
 div[role="radiogroup"] > label:nth-child(3) { background: var(--yellow); }
 div[role="radiogroup"] > label:nth-child(4) { background: var(--tea-pink); }
 div[role="radiogroup"] > label:nth-child(5) { background: var(--soft-red); }
 
-/* Bullet (titik di kiri) → putih */
+/* Bullet putih */
 div[role="radiogroup"] > label::before {
     content: "";
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background: white !important;
-    margin-right: 10px;
     display: inline-block;
 }
 
@@ -307,7 +222,6 @@ div[role="radiogroup"] > label[data-selected="true"] {
     box-shadow: 0 6px 16px rgba(0,0,0,0.20);
 }
 
-/* Titik ketika dipilih */
 div[role="radiogroup"] > label[data-selected="true"]::before {
     background: white !important;
 }
