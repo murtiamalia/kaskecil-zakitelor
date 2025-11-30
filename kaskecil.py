@@ -301,12 +301,13 @@ with st.sidebar:
 
 st.sidebar.title("📘 Menu Utama")
 menu = st.sidebar.radio(
+    "Menu Utama",
     [
-        "📌 Beranda",
-        "🧾 Transaksi",
-        "📑 Laporan Bulanan",
-        "📥 Unduh Laporan",
-        "🗑 Reset Transaksi"
+        "Beranda",
+        "Transaksi",
+        "Laporan Bulanan",
+        "Unduh Laporan Kas Kecil",
+        "Reset Semua Transaksi"
     ]
 )
 
@@ -624,6 +625,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
