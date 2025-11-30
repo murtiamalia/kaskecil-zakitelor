@@ -382,7 +382,7 @@ menu_value = st.sidebar.radio(
     ].index(st.session_state.menu),
     label_visibility="collapsed"
 )
-
+st.session_state.menu = menu_value
 # ============================
 # FUNCTION ITEM CARD
 # ============================
@@ -724,6 +724,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
