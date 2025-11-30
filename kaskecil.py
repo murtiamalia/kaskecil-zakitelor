@@ -311,54 +311,6 @@ st.markdown("""
 # ===============     SIDEBAR MENU     =================
 # =====================================================
 
-with st.sidebar:
-    if st.button("Logout"):
-        st.session_state.logged = False
-        st.rerun()
-
-# =====================================================
-#             CUSTOM SIDEBAR CARD MENU
-# =====================================================
-
-st.sidebar.markdown("""
-<style>
-
-.sidebar-card {
-    padding: 14px 18px;
-    margin-bottom: 14px;
-    border-radius: 16px;
-    font-size: 17px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.22s ease-in-out;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #1B1F3B;
-}
-
-/* WARNA CARD GRADASI */
-.card-1 { background: linear-gradient(135deg, #E9D1E1, #F3E4ED); }
-.card-2 { background: linear-gradient(135deg, #A0BAC0, #C2D4D7); }
-.card-3 { background: linear-gradient(135deg, #F6D60D, #F9E875); }
-.card-4 { background: linear-gradient(135deg, #E9D1E1, #F0DEE8); }
-.card-5 { background: linear-gradient(135deg, #FFB4B4, #FFD1D1); }
-
-/* Hover */
-.sidebar-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
-
-/* Selected */
-.selected {
-    border: 3px solid #3A2D71;
-    box-shadow: 0 6px 20px rgba(58,45,113,0.25);
-}
-
-</style>
-""", unsafe_allow_html=True)
-
 # ========== INITIAL STATE ==========
 if "menu" not in st.session_state:
     st.session_state.menu = "📌 Beranda"
@@ -382,32 +334,39 @@ menu_value = st.sidebar.radio(
     ].index(st.session_state.menu),
     label_visibility="collapsed"
 )
+
 st.session_state.menu = menu_value
+
+
 # ============================
 # FUNCTION ITEM CARD
 # ============================
 def menu_item(label, icon, key, card_class):
     selected = (st.session_state.menu == key)
-
     active_class = "selected" if selected else ""
+
     html = f"""
         <div class="sidebar-card {card_class} {active_class}"
-             onclick="document.querySelector('input[value={key}]').click()">
+             onclick="document.querySelector('input[value='{key}']).click()">
             <span>{icon}</span> <span>{label}</span>
         </div>
     """
-
     st.sidebar.markdown(html, unsafe_allow_html=True)
     return key
 
-# ==================================
+
+# ============================
 # RENDER CARD MENU
-# ==================================
-menu_item("Beranda", "📌", "beranda", "card-1")
-menu_item("Transaksi", "🧾", "transaksi", "card-2")
-menu_item("Laporan Bulanan", "📑", "laporan", "card-3")
-menu_item("Unduh Laporan", "📥", "unduh", "card-4")
-menu_item("Reset Semua", "🗑️", "reset", "card-5")
+# ============================
+menu_item("Beranda", "📌", "📌 Beranda", "card-1")
+menu_item("Transaksi", "🧾", "🧾 Transaksi", "card-2")
+menu_item("Laporan Bulanan", "📑", "📑 Laporan Bulanan", "card-3")
+menu_item("Unduh Laporan", "📥", "📥 Unduh Laporan", "card-4")
+menu_item("Reset Semua", "🗑", "🗑 Reset Semua Transaksi", "card-5")
+
+# SIMPAN KE VARIABEL MENU
+menu = st.session_state.menu
+
 
 
 # =====================================================
@@ -724,6 +683,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
