@@ -311,32 +311,17 @@ st.markdown("""
 # ===============     SIDEBAR MENU     =================
 # =====================================================
 
-# ========== INITIAL STATE ==========
-if "menu" not in st.session_state:
-    st.session_state.menu = "📌 Beranda"
-
-# ========== RADIO HIDDEN ==========
-menu_value = st.sidebar.radio(
-    "hidden_menu",
+st.sidebar.title("📘 Menu Utama")
+menu = st.sidebar.radio(
+    "Menu Utama",
     [
         "📌 Beranda",
         "🧾 Transaksi",
         "📑 Laporan Bulanan",
         "📥 Unduh Laporan",
         "🗑 Reset Semua Transaksi"
-    ],
-    index=[
-        "📌 Beranda",
-        "🧾 Transaksi",
-        "📑 Laporan Bulanan",
-        "📥 Unduh Laporan",
-        "🗑 Reset Semua Transaksi"
-    ].index(st.session_state.menu),
-    label_visibility="collapsed"
+    ]
 )
-
-st.session_state.menu = menu_value
-
 
 # ============================
 # FUNCTION ITEM CARD
@@ -673,6 +658,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
