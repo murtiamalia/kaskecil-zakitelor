@@ -3,6 +3,7 @@ import pandas as pd
 import datetime
 from io import BytesIO
 import os
+import io
 
 
 st.markdown("""
@@ -637,7 +638,7 @@ elif menu == "📥 Unduh Laporan Kas Kecil":
         buf = io.BytesIO()
         with pd.ExcelWriter(buf, engine="xlsxwriter") as writer:
             df.to_excel(writer, index=False, sheet_name="Petty Cash")
-        buf,seek(0)
+        buf.seek(0)
         return buf
 
     # Tombol download (TIDAK error lagi)
@@ -666,3 +667,4 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
