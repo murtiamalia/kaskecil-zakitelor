@@ -48,7 +48,7 @@ html, body, *, .stAppViewContainer * {
 }
 
 /* ==========================================
-   INPUT FIELD — PUTIH & BORDER BIRU
+   INPUT FIELD — BORDER BIRU, BACKGROUND PUTIH
 ========================================== */
 .stTextInput input,
 .stNumberInput input,
@@ -61,27 +61,18 @@ html, body, *, .stAppViewContainer * {
     box-shadow: none !important;
 }
 
+/* Kolom Jumlah = full border biru (revisi khusus) */
+input[type="number"] {
+    border: 2px solid var(--royal-blue) !important;
+    background: #fff !important;
+}
+
 /* Select Box */
 .stSelectbox > div > div {
     background: #fff !important;
     border: 2px solid var(--royal-blue) !important;
     border-radius: 10px !important;
     color: #000 !important;
-}
-
-/* Placeholder */
-input::placeholder {
-    color: #666 !important;
-}
-
-/* Focus Blue Glow */
-.stTextInput input:focus,
-.stNumberInput input:focus,
-.stDateInput input:focus,
-.stTextArea textarea:focus,
-.stSelectbox > div[data-baseweb="select"]:focus-within {
-    border-color: var(--royal-blue) !important;
-    box-shadow: 0 0 10px rgba(58,45,113,0.35) !important;
 }
 
 /* ==========================================
@@ -131,13 +122,7 @@ label[class] {
 /* ==========================================
    BUTTON KUNING
 ========================================== */
-.stButton > button,
-button[data-testid="baseButton-primary"],
-button[kind="secondary"],
-.wrap-save button,
-.wrap-clear button,
-.wrap-download button,
-.wrap-reset button {
+.stButton > button {
     background-color: var(--yellow-soft) !important;
     border: 2px solid var(--yellow-border) !important;
     border-radius: 10px !important;
@@ -145,9 +130,6 @@ button[kind="secondary"],
     font-weight: 800 !important;
     padding: 10px 22px !important;
     height: 45px !important;
-    box-shadow:
-        0 3px 8px rgba(0,0,0,0.14),
-        0 0 10px rgba(246,214,13,0.25) !important;
     transition: 0.22s ease-in-out !important;
 }
 
@@ -161,7 +143,7 @@ button[kind="secondary"],
 }
 
 /* ==========================================
-   SIDEBAR — TANPA "NAVIGASI"
+   SIDEBAR — HILANGKAN "NAVIGASI"
 ========================================== */
 [data-testid="stSidebar"] h2,
 [data-testid="stSidebar"] h3 {
@@ -169,7 +151,7 @@ button[kind="secondary"],
 }
 
 /* ==========================================
-   SIDEBAR MENU ITEM (NO DOUBLE BULLETS)
+   SIDEBAR MENU ITEM — TANPA BULAT-BULAT
 ========================================== */
 
 [data-testid="stSidebar"] {
@@ -179,7 +161,7 @@ button[kind="secondary"],
     box-shadow: 6px 0 20px rgba(0,0,0,0.1);
 }
 
-/* Hilangkan bullet default Streamlit */
+/* Hilangkan bullet default */
 div[role="radiogroup"] input {
     display: none !important;
 }
@@ -188,30 +170,23 @@ div[role="radiogroup"] input {
 div[role="radiogroup"] > label {
     padding: 14px 16px;
     font-size: 17px;
-    font-weight: 700;
+    font-weight: 800;    /* TEBAAAAL */
     border-radius: 14px;
     cursor: pointer;
     transition: 0.22s;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: block;
 }
 
-/* Warna background item */
+/* Background tiap menu */
 div[role="radiogroup"] > label:nth-child(1) { background: var(--tea-pink); }
 div[role="radiogroup"] > label:nth-child(2) { background: var(--baby-pink); }
 div[role="radiogroup"] > label:nth-child(3) { background: var(--yellow); }
 div[role="radiogroup"] > label:nth-child(4) { background: var(--tea-pink); }
 div[role="radiogroup"] > label:nth-child(5) { background: var(--soft-red); }
 
-/* Bullet putih */
+/* Tidak ada bullet! */
 div[role="radiogroup"] > label::before {
-    content: "";
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: white !important;
-    display: inline-block;
+    display: none !important;
 }
 
 /* Saat dipilih */
@@ -220,10 +195,6 @@ div[role="radiogroup"] > label[data-selected="true"] {
     color: white !important;
     transform: translateY(-3px);
     box-shadow: 0 6px 16px rgba(0,0,0,0.20);
-}
-
-div[role="radiogroup"] > label[data-selected="true"]::before {
-    background: white !important;
 }
 
 </style>
@@ -619,6 +590,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
