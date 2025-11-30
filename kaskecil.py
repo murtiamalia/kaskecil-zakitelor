@@ -636,7 +636,7 @@ elif menu == "📥 Unduh Laporan Kas Kecil":
     # Fungsi untuk membuat file Excel
     def generate_excel(df):
         buf = io.BytesIO()
-        with pd.ExcelWriter(buf, engine="xlsxwriter") as writer:
+        with pd.ExcelWriter(buf, engine="zip") as writer:
             df.to_excel(writer, index=False, sheet_name="Petty Cash")
         buf.seek(0)
         return buf
@@ -667,4 +667,5 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
