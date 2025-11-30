@@ -22,96 +22,90 @@ st.markdown("""
 .stTextInput > div > div > input,
 .stNumberInput > div > div > input,
 .stDateInput > div > div > input {
-    background: #FFFFFF !important;         /* putih terang */
-    color: #1B1F3B !important;               /* teks navy gelap */
-    border: 2px solid #3A2D71 !important;    /* outline biru tua */
+    background: #FFFFFF !important;
+    color: #1B1F3B !important;
+    border: 2px solid #3A2D71 !important;
     border-radius: 10px !important;
 }
 
-/* Placeholder agar terlihat */
+/* Placeholder */
 input::placeholder {
     color: #666 !important;
     opacity: 1 !important;
 }
-/* Card bagian input lebih terang */
-.input-card, .stDateInput, .stTextInput, .stNumberInput {
-    background: #FAFAFF !important;  /* sangat terang */
+
+/* Background card input */
+.input-card,
+.stDateInput,
+.stTextInput,
+.stNumberInput {
+    background: #FAFAFF !important;
 }
+
 /* =======================================================
-   FIX JUDUL UTAMA PENCATATAN KAS KECIL (SUPAYA TERANG)
+   FIX JUDUL / HEADINGS YANG GELAP ATAU TIDAK MUNCUL
    ======================================================= */
 
-.main-header, 
+h1, h2, h3, h4, h5, h6 {
+    color: #1B1F3B !important;
+    font-weight: 900 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* Tangkap heading milik Streamlit */
+div[class*="stAppViewBlockContainer"] h1,
+div[class*="stAppViewBlockContainer"] h2 {
+    color: #1B1F3B !important;
+}
+
+/* Judul markdown (# Judul) */
+.stMarkdown h1,
+.stMarkdown h2 {
+    color: #1B1F3B !important;
+}
+
+/* Class heading Streamlit yang sering berubah */
+.css-10trblm,
+.css-1kyxreq,
+.css-1qg05tj,
+.css-vk3wp9,
+.css-1pj0v2q {
+    color: #1B1F3B !important;
+    font-weight: 900 !important;
+    opacity: 1 !important;
+}
+
+/* Hilangkan opacity global */
+html, body, *, 
+.stAppViewContainer * {
+    opacity: 1 !important;
+    color: inherit !important;
+}
+
+/* =======================================================
+   FIX HEADER UTAMA (PENCATATAN KAS KECIL)
+   ======================================================= */
+
+.main-header,
 .main-header h1 {
-    color: #FFFFFF !important;      
+    color: #FFFFFF !important;
     text-shadow: 0px 1px 3px rgba(0,0,0,0.25) !important;
 }
 
 /* =======================================================
-   FIX UTAMA — JUDUL TIDAK MUNCUL / TERLALU TRANSPARAN
+   FIX LABEL USERNAME & PASSWORD DI LOGIN
    ======================================================= */
 
-/* Semua heading global */
-h1, h2, h3, h4, h5, h6 {
-    color: #1B1F3B !important;       /* Navy gelap, kontras maksimum */
-    font-weight: 900 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
-}
-
-/* Streamlit Title (class selalu berubah, jadi kita pakai wildcard) */
-div[class*="stAppViewBlockContainer"] h1,
-div[class*="stAppViewBlockContainer"] h2 {
-    color: #1B1F3B !important;
-    opacity: 1 !important;
-}
-
-/* Judul dengan markdown (# Aplikasi Kas Kecil) */
-.stMarkdown h1, 
-.stMarkdown h2 {
-    color: #1B1F3B !important;
-    opacity: 1 !important;
-}
-
-/* Judul bawaan Streamlit yang sering kena opacity */
-.css-10trblm, 
-.css-1kyxreq, 
-.css-1qg05tj, 
-.css-vk3wp9, 
-.css-1pj0v2q {
-    color: #1B1F3B !important;
-    opacity: 1 !important;
-    font-weight: 900 !important;
-}
-
-/* FIX: Jika ada theme yang memaksa warna terang */
-.stAppViewContainer header h1,
-.stAppViewContainer header h2 {
-    color: #1B1F3B !important;
-    opacity: 1 !important;
-}
-
-/* FIX: Hilangkan efek transparansi global pada seluruh teks */
-html, body, *,
-.stAppViewContainer * {
-    opacity: 1 !important;
-    color: #1B1F3B !important;
-    text-shadow: none !important;
-}
-/* =======================================================
-   FIX LABEL USERNAME & PASSWORD DI LOGIN TIDAK TERLIHAT
-   ======================================================= */
-
-/* Label pada input Streamlit (Streamlit sering menyembunyikan label default) */
 div.stTextInput label,
 div.stPasswordInput label {
-    color: #1B1F3B !important;      /* navy gelap — sangat kontras */
+    color: #1B1F3B !important;
     font-weight: 800 !important;
     font-size: 16px !important;
     opacity: 1 !important;
 }
 
-/* Jika Streamlit memberi class "visually-hidden" → munculkan kembali */
+/* Class label yang Streamlit sembunyikan */
 label.css-1p6f2i7,
 label.css-1dp5vir,
 label.css-1pb2k2g {
@@ -125,52 +119,39 @@ label.css-1pb2k2g {
     font-weight: 800 !important;
 }
 
-/* Container label input login */
 .login-card label {
     color: #1B1F3B !important;
-    opacity: 1 !important;
     font-weight: 900 !important;
 }
 
-/* Pastikan warna placeholder juga terlihat */
-input::placeholder {
-    color: #666 !important; /* abu kuat, mudah dibaca */
-    opacity: 1 !important;
-}
-
-
 /* ============================================================
-       TOMBOL KUNING SOFT (TRANSPARANSI 60%) — FINAL
+       TOMBOL KUNING SOFT (TRANSPARANSI 60%)
    ============================================================ */
 
 :root {
-    --yellow-soft: rgba(246,214,13,0.6);   /* kuning 60% */
+    --yellow-soft: rgba(246,214,13,0.6);
     --yellow-soft-hover: rgba(246,214,13,0.75);
     --yellow-border: #e0bf0a;
 }
 
-/* Semua tombol dalam wrapper khusus */
 .wrap-save button,
 .wrap-clear button,
 .wrap-download button,
 .wrap-reset button,
-button[data-testid="baseButton-primary"],   /* UNDuh Excel */
-.stButton > button,                         /* tombol biasa */
-button[kind="secondary"]                    /* Logout */
-{
+button[data-testid="baseButton-primary"],
+.stButton > button,
+button[kind="secondary"] {
     background-color: var(--yellow-soft) !important;
     color: #000 !important;
-    font-weight: 800 !important;   /* bold */
+    font-weight: 800 !important;
     border-radius: 10px !important;
     border: 2px solid var(--yellow-border) !important;
     padding: 10px 22px !important;
     font-size: 15px !important;
     height: 45px !important;
-
     box-shadow:
         0 3px 8px rgba(0,0,0,0.15),
         0 0 10px rgba(246,214,13,0.20) !important;
-
     transition: 0.22s ease-in-out !important;
 }
 
@@ -181,8 +162,7 @@ button[kind="secondary"]                    /* Logout */
 .wrap-reset button:hover,
 button[data-testid="baseButton-primary"]:hover,
 .stButton > button:hover,
-button[kind="secondary"]:hover
-{
+button[kind="secondary"]:hover {
     background-color: var(--yellow-soft-hover) !important;
     transform: translateY(-2px);
     box-shadow:
@@ -197,8 +177,7 @@ button[kind="secondary"]:hover
 .wrap-reset button:active,
 button[data-testid="baseButton-primary"]:active,
 .stButton > button:active,
-button[kind="secondary"]:active
-{
+button[kind="secondary"]:active {
     transform: scale(0.97);
 }
 
@@ -806,6 +785,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
