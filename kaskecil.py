@@ -340,27 +340,55 @@ st.markdown("""
 # =====================================================
 # ===============     SIDEBAR MENU     =================
 # =====================================================
+# -----------------------
+# LOGIN (form) — perbaikan
+# -----------------------
+def login_page():
+    st.markdown("<div class='login-wrapper'>", unsafe_allow_html=True)
+    st.markdown("""
+        <div class="login-card">
+            <div class="login-title">APLIKASI KAS KECIL</div>
+            <div class="login-sub">SILAKAN LOGIN</div>
+        </div>
+    """, unsafe_allow_html=True)
 
-# ---------------------------
-# SIDEBAR + LOGOUT (perbaikan)
-# ---------------------------
+    with st.form("login_form"):
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        login = st.form_submit_button("Login")
+
+        if login:
+            if username == "kaskecilzakitelor" and password == "adminz4k1":
+                # cukup set session state; Streamlit akan rerun otomatis
+                st.session_state.logged = True
+            else:
+                st.error("Username atau password salah!")
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+
+# -----------------------
+# LOGOUT (callback) — perbaikan
+# -----------------------
 def logout():
-    # cukup set logged False — jangan hapus transaksi kecuali memang mau reset
+    # jangan panggil st.rerun() di sini
+    # cukup set flag logged ke False; Streamlit akan otomatis rerun setelah callback
     st.session_state.logged = False
-    # kembali ke flow login
-    st.rerun()
+    # jika ingin juga reset beberapa key:
+    # for k in ["menu", "akun_lap", "bulan_lap", "tahun_lap"]:
+    #     if k in st.session_state:
+    #         del st.session_state[k]
 
+
+# -----------------------
+# Tampilkan sidebar dengan logout
+# -----------------------
 with st.sidebar:
-    # tampilkan tombol Logout hanya jika sedang logged in
     if st.session_state.get("logged", False):
-        # tampilkan tombol logout kecil di atas
+        # tombol logout memanggil callback logout (tanpa rerun manual)
         st.button("Logout", key="btn_logout", on_click=logout)
-        st.markdown("---")  # pemisah garis
 
-    # Judul Sidebar
     st.markdown('<span class="sidebar-title">Menu Utama</span>', unsafe_allow_html=True)
-
-    # Radio menu (tetap sama)
     menu = st.radio(
         "",
         [
@@ -371,6 +399,7 @@ with st.sidebar:
             "🗑 Reset Semua Transaksi"
         ]
     )
+
 
 st.write(f"Menu dipilih: **{menu}**")
 # ============================
@@ -703,6 +732,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
