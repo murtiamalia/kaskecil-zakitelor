@@ -186,13 +186,6 @@ label[class] {
     transform: scale(0.97) !important;
 }
 
-/* ==========================================
-   SIDEBAR — HILANGKAN "NAVIGASI"
-========================================== */
-[data-testid="stSidebar"] h2,
-[data-testid="stSidebar"] h3 {
-    display: none !important;
-}
 
 /* ==========================================
    SIDEBAR MENU ITEM — TANPA BULAT-BULAT
@@ -308,13 +301,12 @@ with st.sidebar:
 
 st.sidebar.title("📘 Menu Utama")
 menu = st.sidebar.radio(
-    "Navigasi",
     [
         "📌 Beranda",
         "🧾 Transaksi",
         "📑 Laporan Bulanan",
-        "📥 Unduh Laporan Kas Kecil",
-        "🗑 Reset Semua Transaksi"
+        "📥 Unduh Laporan",
+        "🗑 Reset Transaksi"
     ]
 )
 
@@ -368,7 +360,7 @@ if menu == "📌 Beranda":
                 <h3 style="color:#3A2D71; font-weight:900; margin-bottom:6px;">
                     Metode Pencatatan
                 </h3>
-                <p style="color:#000; font-size:17px; font-weight:700; margin:0;">
+                <p style="color:#000; font-size:20px; font-weight:700; margin:0;">
                     Fluktuatif
                 </p>
             </div>
@@ -388,7 +380,7 @@ if menu == "📌 Beranda":
                 <h3 style="color:#3A2D71; font-weight:900; margin-bottom:6px;">
                     Saldo Awal Sistem
                 </h3>
-                <p style="color:#000; font-size:17px; font-weight:700; margin:0;">
+                <p style="color:#000; font-size:20px; font-weight:700; margin:0;">
                     Rp {SALDO_AWAL:,}
                 </p>
             </div>
@@ -414,6 +406,7 @@ elif menu == "🧾 Transaksi":
 
     tanggal = st.date_input("Tanggal", key="tanggal_input")
     deskripsi = st.text_input("Deskripsi", key="deskripsi_input")
+ 
     akun_list = ["Semua"] + list(COA.keys()) + ["Kas Kecil"]
     akun_pilihan = st.selectbox("Fitur Akun", akun_list, key="akun_filter_input")
 
@@ -467,9 +460,6 @@ elif menu == "🧾 Transaksi":
         st.button("Clear Input", key="clear_btn", on_click=reset_input)
         st.markdown("</div>", unsafe_allow_html=True)
 
-# =====================================================
-# ================= LAPORAN BULANAN ===================
-# =====================================================
 # =====================================================
 # ================= LAPORAN BULANAN ===================
 # =====================================================
@@ -589,9 +579,9 @@ elif menu == "📑 Laporan Bulanan":
 # =====================================================
 # ================= UNDUH LAPORAN =====================
 # =====================================================
-elif menu == "📥 Unduh Laporan Kas Kecil":
+elif menu == "📥 Unduh Laporan":
 
-    st.header("📥 Download Laporan Kas Kecil")
+    st.header("📥 Unduh File Laporan Kas Kecil")
 
     # Jika tidak ada transaksi
     if len(st.session_state.transaksi) == 0:
@@ -634,18 +624,6 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
