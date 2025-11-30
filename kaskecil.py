@@ -341,18 +341,37 @@ st.markdown("""
 # ===============     SIDEBAR MENU     =================
 # =====================================================
 
+# ---------------------------
+# SIDEBAR + LOGOUT (perbaikan)
+# ---------------------------
+def logout():
+    # cukup set logged False — jangan hapus transaksi kecuali memang mau reset
+    st.session_state.logged = False
+    # kembali ke flow login
+    st.rerun()
+
 with st.sidebar:
+    # tampilkan tombol Logout hanya jika sedang logged in
+    if st.session_state.get("logged", False):
+        # tampilkan tombol logout kecil di atas
+        st.button("Logout", key="btn_logout", on_click=logout)
+        st.markdown("---")  # pemisah garis
+
+    # Judul Sidebar
     st.markdown('<span class="sidebar-title">Menu Utama</span>', unsafe_allow_html=True)
-menu = st.sidebar.radio(
-    "",
-    [
-        "📌 Beranda",
-        "🧾 Transaksi",
-        "📑 Laporan Bulanan",
-        "📥 Unduh Laporan",
-        "🗑 Reset Semua Transaksi"
-    ]
-)
+
+    # Radio menu (tetap sama)
+    menu = st.radio(
+        "",
+        [
+            "📌 Beranda",
+            "🧾 Transaksi",
+            "📑 Laporan Bulanan",
+            "📥 Unduh Laporan",
+            "🗑 Reset Semua Transaksi"
+        ]
+    )
+
 st.write(f"Menu dipilih: **{menu}**")
 # ============================
 # FUNCTION ITEM CARD
@@ -684,6 +703,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
