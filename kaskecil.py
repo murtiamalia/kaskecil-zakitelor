@@ -370,11 +370,6 @@ def menu_item(label, icon, key, card_class):
     st.sidebar.markdown(html, unsafe_allow_html=True)
     return key
 
-# SIMPAN KE VARIABEL MENU
-menu = st.session_state.menu
-
-
-
 # =====================================================
 # ======================= DATA ========================
 # =====================================================
@@ -689,6 +684,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
