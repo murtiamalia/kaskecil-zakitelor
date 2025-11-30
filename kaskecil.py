@@ -640,12 +640,11 @@ elif menu == "📥 Unduh Laporan Kas Kecil":
         buf.seek(0)
         return buf
 
-
     # Tombol download (TIDAK error lagi)
     st.markdown("<div class='wrap-download'>", unsafe_allow_html=True)
     st.download_button(
         label="📥 Unduh Excel",
-        data=generate_excel(df),
+        def generate_excel_openpyxl(df),
         file_name=f"Laporan_Kas_{datetime.date.today()}.csv",
         mime="text/csv",
         key="download_excel"
@@ -668,6 +667,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
