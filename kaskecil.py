@@ -7,6 +7,89 @@ import io
 
 st.markdown("""
 <style>
+
+<style>
+
+/* ----- COLOR PALETTE ----- */
+:root {
+    --royal-blue: #3A2D71;
+    --tea-pink: #E9D1E1;
+    --baby-pink: #A0BAC0;
+    --yellow: #F6D60D;
+    --soft-red: #FFB4B4;
+
+    /* Gradient versi palette */
+    --grad-pink: linear-gradient(135deg, #E9D1E1, #C7A6C3);
+    --grad-blue: linear-gradient(135deg, #A0BAC0, #7B9BA3);
+    --grad-yellow: linear-gradient(135deg, #F6D60D, #E5C20A);
+    --grad-red: linear-gradient(135deg, #FFB4B4, #E18C8C);
+    --grad-purple: linear-gradient(135deg, #3A2D71, #54439A);
+}
+
+/* ----- SIDEBAR WRAPPER ----- */
+[data-testid="stSidebar"] {
+    padding: 32px 18px;
+    background: #fff !important;
+    border-right: 2px solid var(--royal-blue);
+    box-shadow: 5px 0 18px rgba(0,0,0,0.12);
+}
+
+/* Hilangkan bullet radio */
+div[role="radiogroup"] input {
+    display: none !important;
+}
+
+/* ----- MENU ITEM BASE STYLE ----- */
+div[role="radiogroup"] > label {
+    display: block;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 16px;
+    color: #000;
+    transition: 0.25s ease;
+    border: 2px solid transparent;
+}
+
+/* ----- 5 MENU GRADIENT SESUAI PALETTE ----- */
+div[role="radiogroup"] > label:nth-child(1) {
+    background: var(--grad-pink);
+}
+
+div[role="radiogroup"] > label:nth-child(2) {
+    background: var(--grad-blue);
+}
+
+div[role="radiogroup"] > label:nth-child(3) {
+    background: var(--grad-yellow);
+}
+
+div[role="radiogroup"] > label:nth-child(4) {
+    background: var(--grad-purple);
+}
+
+div[role="radiogroup"] > label:nth-child(5) {
+    background: var(--grad-red);
+}
+
+/* ----- HOVER EFFECT ----- */
+div[role="radiogroup"] > label:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+}
+
+/* ----- SELECTED STATE ----- */
+div[role="radiogroup"] > label[data-selected="true"] {
+    background: var(--royal-blue) !important;
+    color: #fff !important;
+    border-color: #fff !important;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.32);
+}
+
+
 /* ====== Perbaikan cepat untuk NumberInput (Jumlah) ====== */
 
 /* Terapkan border & radius pada wrapper luar supaya tidak terpotong */
@@ -625,6 +708,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
