@@ -15,6 +15,37 @@ st.markdown("""
     --baby-pink: #A0BAC0;
     --soft-red: #FFB4B4;
 }
+/* =======================================================
+   FIX INPUT FIELD: BIKIN LEBIH TERANG & JELAS
+   ======================================================= */
+
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input,
+.stDateInput > div > div > input {
+    background: #FFFFFF !important;         /* putih terang */
+    color: #1B1F3B !important;               /* teks navy gelap */
+    border: 2px solid #3A2D71 !important;    /* outline biru tua */
+    border-radius: 10px !important;
+}
+
+/* Placeholder agar terlihat */
+input::placeholder {
+    color: #666 !important;
+    opacity: 1 !important;
+}
+/* Card bagian input lebih terang */
+.input-card, .stDateInput, .stTextInput, .stNumberInput {
+    background: #FAFAFF !important;  /* sangat terang */
+}
+/* =======================================================
+   FIX JUDUL UTAMA PENCATATAN KAS KECIL (SUPAYA TERANG)
+   ======================================================= */
+
+.main-header, 
+.main-header h1 {
+    color: #FFFFFF !important;      
+    text-shadow: 0px 1px 3px rgba(0,0,0,0.25) !important;
+}
 
 /* =======================================================
    FIX UTAMA — JUDUL TIDAK MUNCUL / TERLALU TRANSPARAN
@@ -775,6 +806,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
