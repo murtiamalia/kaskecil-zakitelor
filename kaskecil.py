@@ -634,10 +634,11 @@ elif menu == "📥 Unduh Laporan Kas Kecil":
 
     # Fungsi untuk membuat file Excel
     def generate_excel(df):
-        buf = BytesIO()
-        with pd.ExcelWriter(buf, engine="openpyxl") as writer:
-            df.to_excel(writer, index=False, sheet_name="Laporan")
-        return buf.getvalue()
+        buf = io.BytesIO()
+        with pd.ExcelWriter(buf, engine="xlsxwriter") as writer:
+            df.to_excel(writer, index=False, sheet_name="Petty Cash")
+        buf,seek(0)
+        return buf
 
     # Tombol download (TIDAK error lagi)
     st.markdown("<div class='wrap-download'>", unsafe_allow_html=True)
@@ -663,4 +664,5 @@ elif menu == "🗑 Reset Semua Transaksi":
         if os.path.exists(FILE_PATH):
             os.remove(FILE_PATH)
         st.success("Semua transaksi berhasil dihapus!")
+
         st.markdown("</div>", unsafe_allow_html=True)
