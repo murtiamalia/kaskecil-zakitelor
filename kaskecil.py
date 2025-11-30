@@ -634,22 +634,20 @@ elif menu == "📥 Unduh Laporan Kas Kecil":
     df = pd.DataFrame(st.session_state.transaksi)
 
     # Fungsi untuk membuat file Excel
-    def generate_excel(df):
-        buf = io.BytesIO()
-        with pd.ExcelWriter(buf, engine="zip") as writer:
-            df.to_excel(writer, index=False, sheet_name="Petty Cash")
-        buf.seek(0)
-        return buf
+ def generate_excel(df):
+    csv = df.to_csv(index=False).encode("utf-8")
+    return csv
 
     # Tombol download (TIDAK error lagi)
     st.markdown("<div class='wrap-download'>", unsafe_allow_html=True)
     st.download_button(
         label="📥 Unduh Excel",
         data=generate_excel(df),
-        file_name=f"Laporan_Kas_{datetime.date.today()}.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        file_name=f"Laporan_Kas_{datetime.date.today()}.csv",
+        mime="text/csv",
         key="download_excel"
     )
+
     st.markdown("</div>", unsafe_allow_html=True)
 
 
@@ -667,5 +665,6 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
