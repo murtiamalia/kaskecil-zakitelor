@@ -1,0 +1,7 @@
+Tanggal,Deskripsi,Jenis,Jumlah,Debit,Kredit
+2025-11-30,Membayar parkir,Pengeluaran,10000,Beban Transport,Kas Kecil
+2025-11-30,Membayar parkir,Pengeluaran,10000,Beban Transport,Kas Kecil
+2025-12-01,Membayar parkir,Pengeluaran,20000,Beban Transport,Kas Kecil
+2025-12-10,Membayar tol,Pengeluaran,200000,Beban Transport,Kas Kecil
+2025-12-15,Pengisian kembali kas kecil,Topup,200000,Kas Kecil,Kas Besar / Bank
+2025-12-19,Membeli pulpen,Pengeluaran,100000,Beban ATK,Kas Kecil
