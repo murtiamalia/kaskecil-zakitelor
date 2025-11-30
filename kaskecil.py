@@ -312,28 +312,6 @@ div[role="radiogroup"] > label[data-selected="true"] {
 </style>
 """, unsafe_allow_html=True)
 
-menu = st.radio(
-    "",
-    ["Beranda", "Transaksi", "Laporan Bulanan", "Unduh Laporan", "Reset Semua"],
-    label_visibility="collapsed"
-)
-
-def card(title, icon, selected):
-    sel_class = "selected" if selected else ""
-    return f"""
-    <div class="sidebar-card {sel_class}">
-        <input type="radio" disabled checked>
-        <div class="sidebar-title">{icon} {title}</div>
-    </div>
-    """
-
-st.markdown(card("Beranda", "⭕", menu=="Beranda"), unsafe_allow_html=True)
-st.markdown(card("Transaksi", "📋", menu=="Transaksi"), unsafe_allow_html=True)
-st.markdown(card("Laporan Bulanan", "📄", menu=="Laporan Bulanan"), unsafe_allow_html=True)
-st.markdown(card("Unduh Laporan", "📥", menu=="Unduh Laporan"), unsafe_allow_html=True)
-st.markdown(card("Reset Semua", "🗑️", menu=="Reset Semua"), unsafe_allow_html=True)
-
-
 # =====================================================
 # ===============         LOGIN       ==================
 # =====================================================
@@ -396,17 +374,92 @@ with st.sidebar:
         st.session_state.logged = False
         st.rerun()
 
-st.sidebar.title("📘 Menu Utama")
-menu = st.sidebar.radio(
-    "Menu Utama",
-    [
-        "📌 Beranda",
-        "🧾 Transaksi",
-        "📑 Laporan Bulanan",
-        "📥 Unduh Laporan",
-        "🗑 Reset Semua Transaksi"
-    ]
+# =====================================================
+#             CUSTOM SIDEBAR CARD MENU
+# =====================================================
+
+st.sidebar.markdown("""
+<style>
+
+.sidebar-card {
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border-radius: 16px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.22s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #1B1F3B;
+}
+
+/* WARNA CARD GRADASI */
+.card-1 { background: linear-gradient(135deg, #E9D1E1, #F3E4ED); }
+.card-2 { background: linear-gradient(135deg, #A0BAC0, #C2D4D7); }
+.card-3 { background: linear-gradient(135deg, #F6D60D, #F9E875); }
+.card-4 { background: linear-gradient(135deg, #E9D1E1, #F0DEE8); }
+.card-5 { background: linear-gradient(135deg, #FFB4B4, #FFD1D1); }
+
+/* Hover */
+.sidebar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* Selected */
+.selected {
+    border: 3px solid #3A2D71;
+    box-shadow: 0 6px 20px rgba(58,45,113,0.25);
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+# ============================
+# FUNCTION ITEM CARD
+# ============================
+def menu_item(label, icon, key, card_class):
+    selected = (st.session_state.menu == key)
+
+    active_class = "selected" if selected else ""
+    html = f"""
+        <div class="sidebar-card {card_class} {active_class}"
+             onclick="document.querySelector('input[value={key}]').click()">
+            <span>{icon}</span> <span>{label}</span>
+        </div>
+    """
+
+    st.sidebar.markdown(html, unsafe_allow_html=True)
+    return key
+
+
+# ==================================
+# LOGIC RADIO TANPA TAMPIL ASLINYA
+# ==================================
+
+# radio hidden
+menu_value = st.sidebar.radio(
+    "hidden_menu",
+    ["beranda","transaksi","laporan","unduh","reset"],
+    label_visibility="collapsed"
 )
+
+# simpan ke session agar sidebar bisa tahu yg aktif
+st.session_state.menu = menu_value
+
+
+# ==================================
+# RENDER CARD MENU
+# ==================================
+menu_item("Beranda", "📌", "beranda", "card-1")
+menu_item("Transaksi", "🧾", "transaksi", "card-2")
+menu_item("Laporan Bulanan", "📑", "laporan", "card-3")
+menu_item("Unduh Laporan", "📥", "unduh", "card-4")
+menu_item("Reset Semua", "🗑️", "reset", "card-5")
+
 
 # =====================================================
 # ======================= DATA ========================
@@ -722,6 +775,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
