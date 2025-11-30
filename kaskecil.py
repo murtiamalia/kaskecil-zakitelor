@@ -361,7 +361,7 @@ if menu == "📌 Beranda":
                 <h3 style="color:#3A2D71; font-weight:900; margin-bottom:6px;">
                     Metode Pencatatan
                 </h3>
-                <p style="color:#000; font-size:20px; font-weight:700; margin:0;">
+                <p style="color:#000; font-size:17px; font-weight:700; margin:0;">
                     Fluktuatif
                 </p>
             </div>
@@ -381,7 +381,7 @@ if menu == "📌 Beranda":
                 <h3 style="color:#3A2D71; font-weight:900; margin-bottom:6px;">
                     Saldo Awal Sistem
                 </h3>
-                <p style="color:#000; font-size:20px; font-weight:700; margin:0;">
+                <p style="color:#000; font-size:17px; font-weight:700; margin:0;">
                     Rp {SALDO_AWAL:,}
                 </p>
             </div>
@@ -625,6 +625,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
