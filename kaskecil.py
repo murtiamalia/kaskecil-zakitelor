@@ -270,6 +270,24 @@ div[role="radiogroup"] > label[data-selected="true"] {
     box-shadow: 0 4px 14px rgba(0,0,0,0.18);
     margin-bottom: 25px;
 }
+/* Tambahkan warna teks agar terlihat jelas di dalam input */
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea,
+.stDateInput input {
+    color: #000 !important; /* Warna teks di dalam input */
+}
+
+/* Selectbox (Dropdown) */
+.stSelectbox > div > div {
+    /* ... kode lama ... */
+    color: #000 !important; /* Warna teks di selectbox utama */
+}
+
+/* Teks label untuk st.sidebar.radio (Navigasi) */
+[data-testid="stSidebar"] div.stRadio > label {
+    color: #333 !important; /* Warna teks label radio (misalnya 'Navigasi') */
+}
 
 </style>
 """, unsafe_allow_html=True)
@@ -665,6 +683,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
