@@ -4,7 +4,7 @@ import datetime
 from io import BytesIO
 import os
 import io
-
+import openpyxl
 
 st.markdown("""
 <style>
@@ -634,9 +634,13 @@ elif menu == "📥 Unduh Laporan Kas Kecil":
     df = pd.DataFrame(st.session_state.transaksi)
 
     # Fungsi untuk membuat file Excel
-         def generate_excel(df):
-            csv = df.to_csv(index=False).encode("utf-8")
-            return csv
+        def generate_excel(df):
+            buf = io.BytesIO()
+            with pd.ExcelWriter(buf, engine="openpyxl") as writer:
+                df.to_excel(writer, index=False, sheet_name="Sheet1")
+            buf.seek(0)
+            return buf
+
 
     # Tombol download (TIDAK error lagi)
     st.markdown("<div class='wrap-download'>", unsafe_allow_html=True)
@@ -665,6 +669,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
