@@ -8,6 +8,87 @@ import io
 st.markdown("""
 <style>
 
+/* =======================
+   FORM INPUT STYLE
+========================== */
+
+/* Semua input termasuk kolom Jumlah dibuat sama */
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #2b2b84;   /* BORDER BIRU FULL */
+    border-radius: 10px;
+    font-size: 16px;
+    background: #ffffff;        /* Background putih agar terlihat */
+    color: #000;                /* Teks hitam agar kontras */
+    box-sizing: border-box;
+}
+
+/* Placeholder lebih jelas */
+input::placeholder,
+textarea::placeholder {
+    color: #666;
+}
+
+
+/* =======================
+   NAVIGASI MENU
+========================== */
+
+/* Hilangkan bullet / lingkaran */
+nav ul,
+nav li {
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hapus bullet pseudo-element jika ada */
+nav li::before,
+nav li::after {
+    content: none !important;
+}
+
+/* Style tiap menu navigasi */
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+
+    /* Warna background tetap mengikuti aslinya 
+       (pink, biru, kuning, ungu, merah muda, dll) */
+}
+
+/* Hilangkan lingkaran kecil di kiri */
+.nav-item input[type="radio"],
+.nav-item input[type="checkbox"] {
+    display: none !important;
+}
+
+/* Ikon dan teks jelas */
+.nav-item span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* =======================
+   HEADER UTAMA
+========================== */
+
+.main-header {
+    background: #ffffff !important;
+    color: #2b2b84 !important;
+    font-weight: 800;
+    font-size: 32px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
 /* ==========================================
    COLOR PALETTE
 ========================================== */
@@ -624,6 +705,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
