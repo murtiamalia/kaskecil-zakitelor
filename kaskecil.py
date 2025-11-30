@@ -208,47 +208,57 @@ label[class] {
    SIDEBAR MENU ITEM — TANPA BULAT-BULAT
 ========================================== */
 
+/* ================================ */
+/* SIDEBAR GRADIENT MENU */
+/* ================================ */
+
+
 [data-testid="stSidebar"] {
-    background: #fff !important;
-    padding: 30px 18px;
-    border-right: 2px solid var(--royal-blue);
-    box-shadow: 6px 0 20px rgba(0,0,0,0.1);
+background: linear-gradient(180deg, #3A2D71 0%, #6A5BA9 45%, #B69CE3 100%) !important;
+padding: 30px 18px;
+border-right: 3px solid rgba(255,255,255,0.25);
+box-shadow: 6px 0 25px rgba(0,0,0,0.18);
 }
+
 
 /* Hilangkan bullet default */
 div[role="radiogroup"] input {
-    display: none !important;
+display: none !important;
 }
+
 
 /* Style tombol menu */
 div[role="radiogroup"] > label {
-    padding: 14px 16px;
-    font-size: 17px;
-    font-weight: 800;    /* TEBAAAAL */
-    border-radius: 14px;
-    cursor: pointer;
-    transition: 0.22s;
-    display: block;
+padding: 14px 16px;
+margin-bottom: 12px;
+font-size: 17px;
+font-weight: 800;
+border-radius: 14px;
+cursor: pointer;
+transition: 0.25s ease-in-out;
+display: block;
+color: #fff !important;
+background: rgba(255,255,255,0.15);
+border: 1px solid rgba(255,255,255,0.25);
+backdrop-filter: blur(6px);
 }
 
-/* Background tiap menu */
-div[role="radiogroup"] > label:nth-child(1) { background: var(--tea-pink); }
-div[role="radiogroup"] > label:nth-child(2) { background: var(--baby-pink); }
-div[role="radiogroup"] > label:nth-child(3) { background: var(--yellow); }
-div[role="radiogroup"] > label:nth-child(4) { background: var(--tea-pink); }
-div[role="radiogroup"] > label:nth-child(5) { background: var(--soft-red); }
 
-/* Tidak ada bullet! */
-div[role="radiogroup"] > label::before {
-    display: none !important;
+/* Efek Hover */
+div[role="radiogroup"] > label:hover {
+transform: translateX(6px);
+background: rgba(255,255,255,0.30);
+border-color: rgba(255,255,255,0.45);
 }
 
-/* Saat dipilih */
+
+/* Warna saat dipilih */
 div[role="radiogroup"] > label[data-selected="true"] {
-    background: var(--royal-blue) !important;
-    color: white !important;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.20);
+background: linear-gradient(90deg, #F6D60D, #FFEA74) !important;
+color: #000 !important;
+border-color: #fff;
+box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+transform: translateX(6px) scale(1.02);
 }
 
 </style>
@@ -658,6 +668,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
