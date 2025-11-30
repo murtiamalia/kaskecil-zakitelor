@@ -211,8 +211,6 @@ label[class] {
 /* ================================ */
 /* SIDEBAR GRADIENT MENU */
 /* ================================ */
-
-
 [data-testid="stSidebar"] {
 background: linear-gradient(180deg, #3A2D71 0%, #6A5BA9 45%, #B69CE3 100%) !important;
 padding: 30px 18px;
@@ -238,9 +236,32 @@ cursor: pointer;
 transition: 0.25s ease-in-out;
 display: block;
 color: #fff !important;
-background: rgba(255,255,255,0.15);
-border: 1px solid rgba(255,255,255,0.25);
+border: 1px solid rgba(255,255,255,0.35);
 backdrop-filter: blur(6px);
+/* GRADASI TIAP TOMBOL NAVIGASI */
+background: linear-gradient(135deg, #FFC6E0, #FF9AD1);
+}
+
+
+/* Variasi gradiasi berdasarkan urutan tombol */
+div[role="radiogroup"] > label:nth-child(2) {
+background: linear-gradient(135deg, #A0BAC0, #7DA0A8);
+}
+
+
+div[role="radiogroup"] > label:nth-child(3) {
+background: linear-gradient(135deg, #F6D60D, #E8C70A);
+color: #000 !important;
+}
+
+
+div[role="radiogroup"] > label:nth-child(4) {
+background: linear-gradient(135deg, #D8C9E8, #B7A7D3);
+}
+
+
+div[role="radiogroup"] > label:nth-child(5) {
+background: linear-gradient(135deg, #FFB4B4, #E79A9A);
 }
 
 
@@ -668,6 +689,7 @@ elif menu == "🗑 Reset Semua Transaksi":
         st.success("Semua transaksi berhasil dihapus!")
 
         st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
