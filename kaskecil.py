@@ -303,11 +303,11 @@ st.sidebar.title("📘 Menu Utama")
 menu = st.sidebar.radio(
     "Menu Utama",
     [
-        "Beranda",
-        "Transaksi",
-        "Laporan Bulanan",
-        "Unduh Laporan Kas Kecil",
-        "Reset Semua Transaksi"
+        "📌 Beranda",
+        "🧾 Transaksi",
+        "📑 Laporan Bulanan",
+        "📥 Unduh Laporan",
+        "🗑 Reset Semua Transaksi"
     ]
 )
 
@@ -361,7 +361,7 @@ if menu == "📌 Beranda":
                 <h3 style="color:#3A2D71; font-weight:900; margin-bottom:6px;">
                     Metode Pencatatan
                 </h3>
-                <p style="color:#000; font-size:17px; font-weight:700; margin:0;">
+                <p style="color:#000; font-size:25px; font-weight:700; margin:0;">
                     Fluktuatif
                 </p>
             </div>
@@ -381,7 +381,7 @@ if menu == "📌 Beranda":
                 <h3 style="color:#3A2D71; font-weight:900; margin-bottom:6px;">
                     Saldo Awal Sistem
                 </h3>
-                <p style="color:#000; font-size:17px; font-weight:700; margin:0;">
+                <p style="color:#000; font-size:25px; font-weight:700; margin:0;">
                     Rp {SALDO_AWAL:,}
                 </p>
             </div>
